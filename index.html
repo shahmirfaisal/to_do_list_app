@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <title>To-Do List App</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
+    </head>
+    <body>
+   <header> 
+  <h1>To-Do-List</h1> <i class="fas fa-info-circle"></i>
+  </header>
+    
+    <div>    
+   <input type="text" id="text" >
+   <button id="addItem" ><i class="fas fa-pen"></i></button>
+   </div>
+   
+   <ol id="ul">
+       
+   </ol>
+   
+   <div id="info">
+       <i class="fas fa-times-circle"></i>
+       <h3>Enter text and click on the button to add items.<br><br> Click on items to them as complete.<br><br> Click on X to delete items</h3>
+   </div>
+
+    <style type="text/css">
+      
+      * {
+    font-family:'Century Gothic';
+    font-style:italic;
+    letter-spacing:1px;
+}
+
+body {
+    background:-webkit-linear-gradient(310deg,dodgerblue 30%,skyblue);
+    background-repeat:no-repeat;
+    height:100vh;
+    padding-bottom:50px;
+}
+
+header i {
+    color:white;
+    font-size:1.5em;
+    position:absolute;
+    right:10px;
+    top:15px;
+}
+
+
+#info {
+    width:70vw;
+    padding:0 10px;
+    background-color:#2c5edd;
+    position:absolute;
+    top:30px;
+    left:10vw;
+    border-radius:7px;
+    display:none;
+}
+
+.info {
+    -webkit-animation-name:openInfo;
+    -webkit-animation-duration:1s;
+}
+
+#info i {
+    color:white;
+    font-size:1.4em;
+    float:right;
+    position:relative;
+    top:5px;
+}
+
+div {
+    margin-top:40px;
+}
+
+input {
+    padding:7px 15px;
+    border-radius:10px;
+    border:none;
+    background-color:rgba(255,255,255,0.5);
+    color:white;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.5);
+    width:80vw;
+}
+
+#addItem {
+    border:none;
+    color:white;
+    padding:7px 15px;
+    background-color:rgba(0,0,255,0.2);
+    border-radius:5px;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.5);
+}
+
+h1 {
+    text-align:center;
+    color:white;
+}
+
+h3 {
+    color:white;
+}
+
+ol {
+    margin-top:30px;
+    padding-left:30px;
+}
+
+li {
+    background-color:rgba(0,0,255,0.3);
+    padding:10px 10px;
+    margin-top:10px;
+    color:white;
+    -webkit-animation-name:open;
+    -webkit-animation-duration:1s;
+    border-radius:5px;
+}
+
+.complete {
+    background-color:#3cff00;
+}
+
+.delete {
+    -webkit-animation-name:close;
+    -webkit-animation-duration:1s;
+    display:none;
+}
+
+.btn {
+    background:none;
+    border:none;
+    float:right;
+    color:white;
+    font-size:1.3em;
+    position:relative;
+    bottom:3px;
+    opacity:0.6;
+}
+
+@-webkit-keyframes open {
+    from{
+        transform:scale(0.0);
+    }
+    to {
+        transform:scale(1.0);
+    }
+}
+
+@-webkit-keyframes openInfo {
+    from{
+        transform:scale(0.0);
+    }
+    to {
+        transform:scale(1.0);
+    }
+}
+
+    </style>
+
+    <script type="text/javascript">
+      
+      $(function() {
+    
+    var value;
+    var list;
+    var del;
+    var val;
+
+ $("#addItem").click(function() {
+     
+ 
+val = $("input").val();
+
+value = val.trim();
+
+    if(value !== "") {
+        
+list = $("<li></li>").html(value);
+del = $("<button class='btn'></button>").html("X");
+
+  $(list).append(del);
+
+  $("ol").append(list);
+  
+    }
+    
+   $("input").val("");
+  
+ $(del).click(function() {
+        $(this).parent().addClass("delete");
+    });
+
+    $(list).click(function() {
+       $(this).toggleClass("complete"); 
+    });
+  
+    });
+    
+    $("header i").click(function() {
+       $("#info").css("display","block").addClass("info"); 
+       
+    });
+    
+    $("#info i").click(function() {
+       $("#info").css("display","none"); 
+    });
+    
+
+    
+});    
+
+
+      
+    </script>
+        
+    </body>
+</html>
